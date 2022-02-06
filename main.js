@@ -16,6 +16,7 @@ function draw() {
 
     if (status != "") {
         objectDetector.detect(video, gotResult);
+        stop("Alarm.mp3");
         for (i = 0; i < objects.length; i++) {
             document.getElementById("status").innerHTML = "Status : Object Detected";
             document.getElementById("no_of_objects").innerHTML = "No. of objects detected = " + objects.length;
@@ -27,6 +28,11 @@ function draw() {
             rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
             
         }
+    }
+
+    else {
+        play("Alarm.mp3");
+        document.getElementById("no_of_objects").innerHTML = "No Objects Found!"
     }
 }
 
