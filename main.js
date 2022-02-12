@@ -1,6 +1,7 @@
 video = "";
 status = "";
 objects = [];
+alaaaaarm = "";
 
 function setup() {
     canvas = createCanvas(640,480);
@@ -11,12 +12,15 @@ function setup() {
     document.getElementById("status").innerHTML = "Status: Detecting Objects";
 }
 
+function preload() {
+    alaaaaarm = loadSound("Alarm.mp3")
+}
+
 function draw() {
     image(video, 0, 0, 640, 480);
-
     if (status != "") {
         objectDetector.detect(video, gotResult);
-        stop("Alarm.mp3");
+        alaaaaarm.stop();
         for (i = 0; i < objects.length; i++) {
             document.getElementById("status").innerHTML = "Status : Object Detected";
             document.getElementById("no_of_objects").innerHTML = "No. of objects detected = " + objects.length;
@@ -31,7 +35,7 @@ function draw() {
     }
 
     else {
-        play("Alarm.mp3");
+        alaaaaarm.play();
         document.getElementById("no_of_objects").innerHTML = "No Objects Found!"
     }
 }
